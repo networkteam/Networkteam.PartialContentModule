@@ -1,0 +1,7 @@
+-
+  requestFilter: 'isPackage("Networkteam.PartialContentModule") && isController("Module") && isFormat("html")'
+  viewObjectName: 'Neos\Fusion\View\FusionView'
+  options:
+    fusionPathPatterns:
+      - 'resource://Neos.Fusion/Private/Fusion'
+      - 'resource://Networkteam.PartialContentModule/Private/FusionModule'

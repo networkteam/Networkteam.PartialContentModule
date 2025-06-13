@@ -1,0 +1,20 @@
+{
+    "description": "Backend integration for partial content import/export",
+    "type": "neos-package",
+    "name": "networkteam/partialcontentmodule",
+    "require": {
+        "ext-zip": "*",
+        "neos/neos": "^8.3",
+        "muensmedia/partial-content-export": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Networkteam\\PartialContentModule\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Networkteam.PartialContentModule"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion:Component) {
+    csrfToken = ''
+
+    exportAction = Neos.Fusion:UriBuilder {
+        action = 'export'
+        controller = 'Export'
+    }
+
+    renderer = afx`
+        <div class="neos-content neos-container-fluid">
+            <div class="neos-row-fluid">
+                <Neos.Fusion.Form:Form form.target.action="export" form.target.controller="export" >
+
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="siteName" label="siteName" field.value="site">
+                        <Neos.Fusion.Form:Input />
+                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="source" label="source" field.value="7694c3e1-87c7-4811-b6e9-8ecae836534e">
+                        <Neos.Fusion.Form:Input />
+                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+                    <Neos.Fusion.Form:Button>submit</Neos.Fusion.Form:Button>
+
+                </Neos.Fusion.Form:Form>
+            </div>
+
+            <div class="neos-footer">
+                <a class="neos-button neos-button-success" href={props.exportAction}>
+                    {I18n.translate('Networkteam.PartialContentModule:Modules:action.export')}
+                </a>
+                <a class="neos-button neos-button-danger" href={props.importAction}>
+                    {I18n.translate('Networkteam.PartialContentModule:Modules:action.import')}
+                </a>
+            </div>
+        </div>
+    `
+}

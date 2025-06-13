@@ -1,0 +1,18 @@
+privilegeTargets:
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+    'Networkteam.PartialContentModule:Export':
+      matcher: 'method(Networkteam\PartialContentModule\Controller\ExportController->(.*)Action())'
+    'Networkteam.PartialContentModule:Import':
+      matcher: 'method(Networkteam\PartialContentModule\Controller\ImportController->(.*)Action())'
+    'Networkteam.PartialContentModule:Module':
+      matcher: 'method(Networkteam\PartialContentModule\Controller\ModuleController->(.*)Action())'
+
+roles:
+  'Neos.Neos:Administrator':
+    privileges:
+      - privilegeTarget: 'Networkteam.PartialContentModule:Export'
+        permission: GRANT
+      - privilegeTarget: 'Networkteam.PartialContentModule:Import'
+        permission: GRANT
+      - privilegeTarget: 'Networkteam.PartialContentModule:Module'
+        permission: GRANT

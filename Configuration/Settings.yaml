@@ -1,0 +1,11 @@
+Neos:
+  Neos:
+    modules:
+      management:
+        submodules:
+          partialcontentmodule:
+            label: 'Partial Content Import/Export'
+            controller: '\Networkteam\PartialContentModule\Controller\ModuleController'
+            description: 'Networkteam.PartialContentModule:Modules:module.description'
+            icon: 'fas fa-share'
+            privilegeTarget: 'Networkteam.PartialContentModule:Module'

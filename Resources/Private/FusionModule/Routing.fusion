@@ -1,0 +1,6 @@
+Networkteam.PartialContentModule.ModuleController {
+    index = afx`
+        <Networkteam.PartialContentModule:Module.Index csrfToken={csrfToken}/>
+        <Networkteam.PartialContentModule:Component.FlashMessages flashMessages={flashMessages}/>
+    `
+}
