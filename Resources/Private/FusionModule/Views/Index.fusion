@@ -19,7 +19,7 @@ prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion
                         </Neos.Fusion.Form:Select>
                     </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="source" label="source" field.value="7694c3e1-87c7-4811-b6e9-8ecae836534e">
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="source" label="Node identifier" field.value="7694c3e1-87c7-4811-b6e9-8ecae836534e">
                         <Neos.Fusion.Form:Input />
                     </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
