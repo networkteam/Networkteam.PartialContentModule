@@ -8,6 +8,7 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Context as SecurityContext;
 use Neos\Fusion\View\FusionView;
 use Neos\Neos\Controller\Module\AbstractModuleController;
+use Neos\Neos\Domain\Repository\SiteRepository;
 
 #[Flow\Scope('singleton')]
 class ModuleController extends AbstractModuleController
@@ -41,6 +42,12 @@ class ModuleController extends AbstractModuleController
     protected $securityContext;
 
     /**
+     * @Flow\Inject
+     * @var SiteRepository
+     */
+    protected siteRepository $siteRepository;
+
+    /**
      * Shows the module
      */
     public function indexAction(): void
@@ -48,6 +55,7 @@ class ModuleController extends AbstractModuleController
         $csrfToken = $this->securityContext->getCsrfProtectionToken();
         $this->view->assignMultiple([
             'csrfToken' => $csrfToken,
+            'sites' => $this->siteRepository->findAll(),
             'flashMessages' => []
         ]);
     }

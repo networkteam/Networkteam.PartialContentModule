@@ -72,9 +72,9 @@ class ExportController extends AbstractModuleController
     /**
      * Shows the export interface with its options and actions
      */
-    public function exportAction(string $siteName, string $source, ?string $title = null): void
+    public function exportAction(string $siteNodeName, string $source, ?string $title = null): void
     {
-        $node = $this->nodePathNormalizerService->getNodeFromPathOrIdentifier( $siteName, $source );
+        $node = $this->nodePathNormalizerService->getNodeFromPathOrIdentifier( $siteNodeName, $source );
         if (!$node)
             throw new NeosException('Error: The given source node could not be found.', 1749801801);
 

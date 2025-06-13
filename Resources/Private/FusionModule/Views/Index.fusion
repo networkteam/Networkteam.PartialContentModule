@@ -11,8 +11,12 @@ prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion
                         <Neos.Fusion.Form:Input />
                     </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="siteName" label="siteName" field.value="site">
-                        <Neos.Fusion.Form:Input />
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="siteNodeName" label="Site">
+                        <Neos.Fusion.Form:Select>
+                            <Neos.Fusion:Loop items={sites}>
+                                <Neos.Fusion.Form:Select.Option attributes.value={item}>{item.name}</Neos.Fusion.Form:Select.Option>
+                            </Neos.Fusion:Loop>
+                        </Neos.Fusion.Form:Select>
                     </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
                     <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="source" label="source" field.value="7694c3e1-87c7-4811-b6e9-8ecae836534e">
