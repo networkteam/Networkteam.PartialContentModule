@@ -4,3 +4,10 @@ Networkteam.PartialContentModule.ModuleController {
         <Networkteam.PartialContentModule:Component.FlashMessages flashMessages={flashMessages}/>
     `
 }
+
+Networkteam.PartialContentModule.ImportController {
+    index = afx`
+        <Networkteam.PartialContentModule:Upload.Index csrfToken={csrfToken}/>
+        <Networkteam.PartialContentModule:Component.FlashMessages flashMessages={flashMessages}/>
+    `
+}

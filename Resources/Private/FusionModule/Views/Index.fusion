@@ -28,6 +28,19 @@ prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion
                 </Neos.Fusion.Form:Form>
             </div>
 
+            <div class="neos-row-fluid">
+                <h2>Upload</h2>
+                <Neos.Fusion.Form:Form form.target.action="upload" form.target.controller="Import" >
+
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="zipFile" label="export file">
+                        <Neos.Fusion.Form:Upload />
+                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+
+                    <Neos.Fusion.Form:Button>submit</Neos.Fusion.Form:Button>
+
+                </Neos.Fusion.Form:Form>
+            </div>
+
             <div class="neos-footer">
                 <a class="neos-button neos-button-success" href={props.exportAction}>
                     {I18n.translate('Networkteam.PartialContentModule:Modules:action.export')}

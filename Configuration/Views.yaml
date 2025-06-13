@@ -1,5 +1,5 @@
 -
-  requestFilter: 'isPackage("Networkteam.PartialContentModule") && isController("Module") && isFormat("html")'
+  requestFilter: 'isPackage("Networkteam.PartialContentModule") && isFormat("html")'
   viewObjectName: 'Neos\Fusion\View\FusionView'
   options:
     fusionPathPatterns:

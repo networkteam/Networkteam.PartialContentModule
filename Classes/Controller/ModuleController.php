@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Networkteam\PartialContentModule\Controller;
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\Security\Context as SecurityContext;
 use Neos\Fusion\View\FusionView;
 use Neos\Neos\Controller\Module\AbstractModuleController;
@@ -41,6 +42,7 @@ class ModuleController extends AbstractModuleController
      */
     protected $securityContext;
 
+
     /**
      * @Flow\Inject
      * @var SiteRepository
@@ -58,6 +60,11 @@ class ModuleController extends AbstractModuleController
             'sites' => $this->siteRepository->findAll(),
             'flashMessages' => []
         ]);
+    }
+
+    public function uploadAction(): void
+    {
+
     }
 
 }
