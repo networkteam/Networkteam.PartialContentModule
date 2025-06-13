@@ -73,8 +73,6 @@ class ImportController extends AbstractModuleController
 
     public function uploadAction(PersistentResource $zipFile, string $targetPath): void
     {
-//        \Neos\Flow\var_dump($this->resourceManager->path$zipFile);
-        $collection = $this->resourceManager->getCollection($zipFile->getCollectionName());
         $localCopyPath = $zipFile->createTemporaryLocalCopy();
         $extractedPath = $localCopyPath . '_extracted';
 
@@ -91,8 +89,6 @@ class ImportController extends AbstractModuleController
             pathinfo($zipFile->getFileName(), PATHINFO_FILENAME),
         );
 
-        \Neos\Flow\var_dump($xmlPath);
-
         $xmlReader = new \XMLReader();
         if ($xmlReader->open($xmlPath, null, LIBXML_PARSEHUGE) === false) {
             throw new NeosException(sprintf('Error: XMLReader could not open "%s".', $xmlPath), 1749826123);
@@ -100,11 +96,15 @@ class ImportController extends AbstractModuleController
 
         $this->partialContentImportService->findPartialImportRoot( $xmlReader );
 
-        $siteNodeName = $this->partialContentImportService->getImportSiteNodeName( $xmlReader );
-        $targetPath = $this->partialContentImportService->getFullImportPath( $xmlReader, $targetPath );
-        $nodeId = $this->partialContentImportService->getImportNodeID( $xmlReader );
-
+        //TODO: validate targetPath
+        $this->partialContentImportService->importFromXML($xmlReader, dirname($xmlPath), $targetPath, []);
 
         //TODO: cleanup - remove zipFile and extracted content
+        Files::removeDirectoryRecursively($extractedPath);
+
+
+
+        $this->addFlashMessage('Import successful');
+        $this->redirect('index', 'Module');
     }
 }

@@ -5,7 +5,7 @@ prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion
         <div class="neos-content neos-container-fluid">
             <div class="neos-row-fluid">
                 <h2>Export</h2>
-                <Neos.Fusion.Form:Form form.target.action="export" form.target.controller="export">
+                <Neos.Fusion.Form:Form form.target.action="export" form.target.controller="Export">
 
                     <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="title" label="Title (optional)">
                         <Neos.Fusion.Form:Input />
@@ -34,6 +34,9 @@ prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion
 
                     <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="zipFile" label="export file">
                         <Neos.Fusion.Form:Upload />
+                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="targetPath" label="Target path">
+                        <Neos.Fusion.Form:Input />
                     </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
                     <Neos.Fusion.Form:Button>submit</Neos.Fusion.Form:Button>
