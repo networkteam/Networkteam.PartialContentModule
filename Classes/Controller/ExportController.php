@@ -10,6 +10,7 @@ use Muensmedia\PartialContentExport\Service\PartialContentExportService;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\View\JsonView;
 use Neos\Flow\Security\Context as SecurityContext;
+use Neos\Flow\Utility\Environment;
 use Neos\Fusion\View\FusionView;
 use Neos\Neos\Controller\Module\AbstractModuleController;
 use Neos\Neos\Domain\Exception as NeosException;
@@ -55,33 +56,34 @@ class ExportController extends AbstractModuleController
      */
     protected $securityContext;
 
+
+    /**
+     * @Flow\Inject
+     * @var Environment
+     */
+    protected $environment;
+
     /**
      * @Flow\Inject
      * @var PartialContentExportService
      */
     protected $partialContentExportService;
-    /**
-     * Renders the list of all redirects and allows modifying them.
-     */
-    public function indexAction(): void
-    {
-        $csrfToken = $this->securityContext->getCsrfProtectionToken();
-        $this->view->assignMultiple([
-            'csrfToken' => $csrfToken,
-            'flashMessages' => []
-        ]);
-    }
 
     /**
      * Shows the export interface with its options and actions
      */
-    public function exportAction(string $siteName, string $source): void
+    public function exportAction(string $siteName, string $source, ?string $title = null): void
     {
         $node = $this->nodePathNormalizerService->getNodeFromPathOrIdentifier( $siteName, $source );
         if (!$node)
             throw new NeosException('Error: The given source node could not be found.', 1749801801);
 
-        $filePath = FLOW_PATH_DATA . '/Temporary/Networkteam.PartialContentModule/'. $node->getIdentifier() .'/' . $node->getIdentifier() . '.xml';
+        if (!empty($title)) {
+            $dirName = $this->sanitizeTitle($title);
+        } else {
+            $dirName = 'export-' . ($node->getProperty('uriPathSegment') ?? $node->getIdentifier());
+        }
+        $filePath = rtrim($this->environment->getPathToTemporaryDirectory(), '/') . '/Networkteam.PartialContentModule/'. $dirName .'/export.xml';
 
         try {
             $this->partialContentExportService->exportToFile(
@@ -125,5 +127,14 @@ class ExportController extends AbstractModuleController
         unlink($filePath);
         Files::removeDirectoryRecursively(dirname($filePath));
         exit;
+    }
+
+    protected function sanitizeTitle(string $fileName): string
+    {
+        // Replace any character that is not A-Z, a-z, 0-9, dot, dash or underscore with underscore
+        $fileName = preg_replace('/[^A-Za-z0-9\.\-_]/', '-', $fileName);
+        // Prevent multiple dots at start (hidden files or traversal)
+        $fileName = ltrim($fileName, '.');
+        return $fileName;
     }
 }

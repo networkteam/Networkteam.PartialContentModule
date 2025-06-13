@@ -1,15 +1,15 @@
 prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion:Component) {
     csrfToken = ''
 
-    exportAction = Neos.Fusion:UriBuilder {
-        action = 'export'
-        controller = 'Export'
-    }
-
     renderer = afx`
         <div class="neos-content neos-container-fluid">
             <div class="neos-row-fluid">
-                <Neos.Fusion.Form:Form form.target.action="export" form.target.controller="export" >
+                <h2>Export</h2>
+                <Neos.Fusion.Form:Form form.target.action="export" form.target.controller="export">
+
+                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="title" label="Title (optional)">
+                        <Neos.Fusion.Form:Input />
+                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
                     <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="siteName" label="siteName" field.value="site">
                         <Neos.Fusion.Form:Input />
