@@ -7,5 +7,5 @@ Neos:
             label: 'Partial Content Import/Export'
             controller: '\Networkteam\PartialContentModule\Controller\ModuleController'
             description: 'Networkteam.PartialContentModule:Modules:module.description'
-            icon: 'fas fa-share'
+            icon: 'fas fa-exchange-alt'
             privilegeTarget: 'Networkteam.PartialContentModule:Module'
