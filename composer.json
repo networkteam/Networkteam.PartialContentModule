@@ -3,9 +3,9 @@
     "type": "neos-package",
     "name": "networkteam/partialcontentmodule",
     "require": {
-        "ext-zip": "*",
         "neos/neos": "^8.3",
-        "muensmedia/partial-content-export": "^1.2"
+        "muensmedia/partial-content-export": "^1.2",
+        "ext-zip": "*"
     },
     "autoload": {
         "psr-4": {
