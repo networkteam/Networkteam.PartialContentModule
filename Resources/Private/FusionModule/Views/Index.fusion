@@ -1,55 +1,59 @@
 prototype(Networkteam.PartialContentModule:Module.Index) < prototype(Neos.Fusion:Component) {
     csrfToken = ''
+    cancelAction = '/neos/management'
 
     renderer = afx`
         <div class="neos-content neos-container-fluid">
+            <h2>{I18n.translate('Networkteam.PartialContentModule:Modules:importExport.description')}</h2>
+
             <div class="neos-row-fluid">
-                <h2>Export</h2>
+
                 <Neos.Fusion.Form:Form form.target.action="export" form.target.controller="export">
+                    <fieldset>
+                        <legend>{I18n.translate('Networkteam.PartialContentModule:Modules:export.form.legend')}</legend>
 
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="title" label="Title (optional)">
-                        <Neos.Fusion.Form:Input />
-                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+                        <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="title" label={I18n.translate('Networkteam.PartialContentModule:Modules:export.form.field.title')}>
+                            <Neos.Fusion.Form:Input />
+                        </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="siteNodeName" label="Site">
-                        <Neos.Fusion.Form:Select>
-                            <Neos.Fusion:Loop items={sites}>
-                                <Neos.Fusion.Form:Select.Option attributes.value={item}>{item.name}</Neos.Fusion.Form:Select.Option>
-                            </Neos.Fusion:Loop>
-                        </Neos.Fusion.Form:Select>
-                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+                        <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="siteNodeName" label={I18n.translate('Networkteam.PartialContentModule:Modules:export.form.field.site')}>
+                            <Neos.Fusion.Form:Select>
+                                <Neos.Fusion:Loop items={sites}>
+                                    <Neos.Fusion.Form:Select.Option attributes.value={item}>{item.name}</Neos.Fusion.Form:Select.Option>
+                                </Neos.Fusion:Loop>
+                            </Neos.Fusion.Form:Select>
+                        </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="source" label="Node identifier" field.value="7694c3e1-87c7-4811-b6e9-8ecae836534e">
-                        <Neos.Fusion.Form:Input />
-                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
-
-                    <Neos.Fusion.Form:Button attributes.class="neos-button-primary">Export</Neos.Fusion.Form:Button>
-
+                        <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="source" label={I18n.translate('Networkteam.PartialContentModule:Modules:export.form.field.nodeIdentifier')}>
+                            <Neos.Fusion.Form:Input />
+                        </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+                    </fieldset>
+                    <Neos.Fusion.Form:Button attributes.class="neos-button-primary">{I18n.translate('Networkteam.PartialContentModule:Modules:export.form.action.export')}</Neos.Fusion.Form:Button>
                 </Neos.Fusion.Form:Form>
             </div>
             <hr/>
             <div class="neos-row-fluid">
-                <h2>Import</h2>
                 <Neos.Fusion.Form:Form form.target.action="import" form.target.controller="import" >
+                    <fieldset>
+                        <legend>{I18n.translate('Networkteam.PartialContentModule:Modules:import.form.legend')}</legend>
 
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="zipFile" label="File to import">
-                        <Neos.Fusion.Form:Upload />
-                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
-                    <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="targetPath" label="Target path">
-                        <Neos.Fusion.Form:Input />
-                    </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+                        <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="zipFile" label={I18n.translate('Networkteam.PartialContentModule:Modules:import.form.field.file')}>
+                            <Neos.Fusion.Form:Upload />
+                        </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
 
-                    <Neos.Fusion.Form:Button attributes.class="neos-button-primary">Import</Neos.Fusion.Form:Button>
-
+                        <Neos.Fusion.Form:Neos.BackendModule.FieldContainer field.name="targetPath" label={I18n.translate('Networkteam.PartialContentModule:Modules:import.form.field.targetPath')}>
+                            <Neos.Fusion.Form:Input />
+                        </Neos.Fusion.Form:Neos.BackendModule.FieldContainer>
+                    </fieldset>
+                    <Neos.Fusion.Form:Button attributes.class="neos-button-primary">
+                        {I18n.translate('Networkteam.PartialContentModule:Modules:import.form.action.import')}
+                    </Neos.Fusion.Form:Button>
                 </Neos.Fusion.Form:Form>
             </div>
 
             <div class="neos-footer">
-                <a class="neos-button neos-button-success" href={props.exportAction}>
-                    {I18n.translate('Networkteam.PartialContentModule:Modules:action.export')}
-                </a>
-                <a class="neos-button neos-button-danger" href={props.importAction}>
-                    {I18n.translate('Networkteam.PartialContentModule:Modules:action.import')}
+                <a class="neos-button" href={props.cancelAction}>
+                    {I18n.translate('Neos.Neos:Modules:cancel')}
                 </a>
             </div>
         </div>

@@ -4,8 +4,15 @@ Neos:
       management:
         submodules:
           partialcontentmodule:
-            label: 'Partial Content Import/Export'
-            controller: '\Networkteam\PartialContentModule\Controller\ModuleController'
-            description: 'Networkteam.PartialContentModule:Modules:module.description'
-            icon: 'fas fa-exchange-alt'
+            label: 'Networkteam.PartialContentModule:Modules:importExport.label'
+            description: 'Networkteam.PartialContentModule:Modules:importExport.description'
+            controller: 'Networkteam\PartialContentModule\Controller\ModuleController'
+            icon: fas fa-exchange-alt
+            mainStylesheet: 'Main'
             privilegeTarget: 'Networkteam.PartialContentModule:Module'
+
+    userInterface:
+      translation:
+        autoInclude:
+          'Networkteam.PartialContentModule':
+            - Modules
